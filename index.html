@@ -997,6 +997,7 @@ function startTracking(){
     const c=$('#courier');if(c){c.style.left=positions[cur][0];c.style.top=positions[cur][1];c.textContent=cur>=3?'🎉':'🛵'}
     $('#etaText').textContent=times[cur];
   }
+  if(window.__trackStep!=null){cur=Math.max(0,Math.min(STEPS.length-1,window.__trackStep));draw();return}
   draw();
   clearInterval(trackTimer);
   trackTimer=setInterval(()=>{cur++;if(cur>=STEPS.length){cur=STEPS.length-1;draw();clearInterval(trackTimer);if(state.lastOrder)state.lastOrder.status='done';return}draw()},2600);
@@ -1098,8 +1099,23 @@ function toggleTheme(){
 try{const t=localStorage.getItem('re_theme');if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
 
+/* ---------- semilla de demostración (solo con ?demo=1) ---------- */
+function seedDemo(){
+  state.user={name:'María Gómez',email:'maria@ejemplo.com'};
+  state.cart=[
+    {rid:1,name:'Master Doble BBQ',price:24900,emoji:'🍔',qty:1},
+    {rid:1,name:'Papas rústicas',price:9900,emoji:'🍟',qty:1},
+    {rid:1,name:'Malteada de Oreo',price:12900,emoji:'🥤',qty:2}
+  ];
+  updateBadge();
+}
+
 /* ---------- init + deep-link por hash ---------- */
 function initFromHash(){
+  const q=new URLSearchParams(location.search);
+  if(q.get('demo')){seedDemo()}
+  if(q.get('theme')){document.documentElement.setAttribute('data-theme',q.get('theme'))}
+  window.__trackStep=q.get('step')!=null?+q.get('step'):null;
   updateBadge();
   const h=(location.hash||'#home').slice(1);const[name,param]=h.split('/');
   const valid=['home','search','restaurant','cart','checkout','track','auth','account'];

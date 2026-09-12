@@ -1,0 +1,332 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wireframe · RápidoExpress</title>
+<style>
+/* ===== Wireframe de baja fidelidad · RápidoExpress =====
+   Escala de grises, cajas estructurales, sin color ni tipografía final. */
+:root{
+  --bg:#f2f2f2; --board:#ffffff; --line:#c9c9c9; --line2:#9a9a9a;
+  --fill:#eef0f2; --fill2:#e0e2e5; --ink:#3d3d3d; --muted:#9a9a9a;
+  --note:#b8452f; --accent:#8a8a8a;
+  --ff:"Segoe UI",Tahoma,Arial,sans-serif;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--ff);font-size:14px;line-height:1.5}
+h1,h2,h3,h4{margin:0;font-weight:600}
+button{font-family:inherit;cursor:pointer}
+[hidden]{display:none!important}
+.wf-topbar{position:sticky;top:0;z-index:20;background:#2b2b2b;color:#fff;padding:10px 16px;display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.wf-topbar b{font-size:15px;margin-right:8px}
+.wf-topbar .tag{font-size:11px;background:#444;padding:3px 8px;border-radius:4px;color:#ddd}
+.wf-nav{display:flex;flex-wrap:wrap;gap:6px;margin-left:auto}
+.wf-nav button{background:#3d3d3d;color:#ddd;border:1px solid #555;border-radius:5px;padding:6px 11px;font-size:12px}
+.wf-nav button.active{background:#fff;color:#222;border-color:#fff;font-weight:700}
+.stage{max-width:1120px;margin:22px auto;padding:0 18px}
+.screen{display:none}
+.screen.active{display:block}
+.board{background:var(--board);border:1.5px solid var(--line2);border-radius:6px;box-shadow:0 2px 0 rgba(0,0,0,.05);overflow:hidden}
+.board-title{background:#f7f7f7;border-bottom:1.5px dashed var(--line2);padding:9px 14px;font-size:12px;letter-spacing:.04em;text-transform:uppercase;color:#666;display:flex;justify-content:space-between}
+.board-title .fig{color:var(--note);font-weight:700}
+.pad{padding:16px}
+/* primitivos wireframe */
+.box{border:1.5px solid var(--line);background:var(--fill);border-radius:4px}
+.box-d{border:1.5px dashed var(--line2);background:transparent;border-radius:4px}
+.img-ph{border:1.5px solid var(--line2);background:
+  repeating-linear-gradient(45deg,#e9ebee 0 10px,#e2e4e7 10px 20px);
+  display:grid;place-items:center;color:#8a8a8a;font-size:11px;border-radius:4px;position:relative;min-height:60px}
+.img-ph:before{content:"";position:absolute;inset:0;background:
+  linear-gradient(to top right,transparent calc(50% - 1px),#c3c6ca,transparent calc(50% + 1px)),
+  linear-gradient(to top left,transparent calc(50% - 1px),#c3c6ca,transparent calc(50% + 1px))}
+.img-ph span{position:relative;z-index:1;background:#eef0f2;padding:1px 6px;border-radius:3px}
+.tline{height:9px;background:var(--fill2);border-radius:3px;margin:6px 0}
+.tline.s{width:40%}.tline.m{width:65%}.tline.l{width:88%}.tline.title{height:15px;width:55%;background:#cfd2d6}
+.btn{display:inline-flex;align-items:center;justify-content:center;border:1.5px solid var(--line2);background:#f4f4f4;border-radius:20px;padding:8px 16px;font-size:12.5px;color:#444;font-weight:600}
+.btn.solid{background:#555;color:#fff;border-color:#555}
+.pill{display:inline-flex;align-items:center;gap:5px;border:1.5px solid var(--line);background:#f4f4f4;border-radius:16px;padding:6px 12px;font-size:12px;color:#555}
+.icon{width:26px;height:26px;border:1.5px solid var(--line2);border-radius:50%;display:inline-grid;place-items:center;font-size:12px;color:#666;background:#fafafa}
+.row{display:flex;align-items:center;gap:10px}
+.between{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.grid{display:grid;gap:14px}
+.note{color:var(--note);font-size:11.5px;font-style:italic;display:flex;gap:5px;align-items:flex-start;margin:4px 0}
+.note:before{content:"◄";font-style:normal;font-size:9px;margin-top:3px}
+.label{font-size:11px;color:#888;text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px;display:block}
+.section-gap{height:20px}
+.caption{font-size:11px;color:#888;text-align:center;margin:8px 0 0}
+/* header wireframe */
+.wf-header{border:1.5px solid var(--line2);border-radius:5px;padding:10px 14px;display:flex;align-items:center;gap:12px;background:#fafafa;flex-wrap:wrap}
+.logo-ph{width:120px;height:26px;border:1.5px solid var(--line2);border-radius:4px;display:grid;place-items:center;font-size:11px;color:#777;background:#fff}
+.search-ph{flex:1;min-width:160px;height:34px;border:1.5px solid var(--line);border-radius:18px;display:flex;align-items:center;padding:0 12px;color:#9a9a9a;font-size:12px;background:#fff}
+.cols{display:grid;gap:16px}
+@media(max-width:760px){.cols{grid-template-columns:1fr!important}}
+.card-ph{border:1.5px solid var(--line);border-radius:6px;overflow:hidden;background:#fff}
+.card-ph .ph-cover{height:90px}
+.card-ph .ph-body{padding:10px}
+.timeline-ph{list-style:none;margin:0;padding:0}
+.timeline-ph li{display:flex;gap:12px;padding-bottom:18px;position:relative}
+.timeline-ph li:before{content:"";position:absolute;left:11px;top:26px;bottom:0;width:2px;background:var(--line)}
+.timeline-ph li:last-child:before{display:none}
+.tl-dot{width:24px;height:24px;border-radius:50%;border:1.5px solid var(--line2);background:#f0f0f0;flex:none;display:grid;place-items:center;font-size:11px;color:#666}
+.tl-dot.on{background:#555;color:#fff;border-color:#555}
+</style>
+
+<div class="wf-topbar">
+  <b>WIREFRAME · RápidoExpress</b>
+  <span class="tag">Baja fidelidad</span>
+  <span class="tag">Sin color / sin imágenes reales</span>
+  <nav class="wf-nav" id="wfNav"></nav>
+</div>
+
+<div class="stage">
+
+  <!-- ===== INICIO ===== -->
+  <section class="screen" id="s-home">
+    <div class="board">
+      <div class="board-title"><span>Pantalla 01 — Inicio / Home</span><span class="fig">Figura W1</span></div>
+      <div class="pad">
+        <div class="wf-header">
+          <div class="logo-ph">LOGO</div>
+          <div class="pill">📍 Ubicación ▾</div>
+          <div class="search-ph">🔍 Buscar restaurantes o platos…</div>
+          <span class="icon">☾</span><span class="icon">👤</span><span class="icon">🛒</span>
+        </div>
+        <div class="note">Selector de ubicación (RF5) y buscador global fijos en la barra superior.</div>
+        <div class="section-gap"></div>
+        <!-- hero -->
+        <div class="box" style="padding:24px;min-height:150px">
+          <div class="tline title" style="width:45%;height:20px"></div>
+          <div class="tline m"></div><div class="tline s"></div>
+          <div class="row" style="margin-top:14px">
+            <div class="search-ph" style="max-width:300px;background:#fff">🔍 ¿Qué se te antoja hoy?</div>
+            <span class="btn solid">Buscar</span>
+          </div>
+          <div class="row" style="gap:26px;margin-top:16px">
+            <div><div class="tline title" style="width:40px;height:16px"></div><div class="tline" style="width:70px"></div></div>
+            <div><div class="tline title" style="width:40px;height:16px"></div><div class="tline" style="width:70px"></div></div>
+            <div><div class="tline title" style="width:40px;height:16px"></div><div class="tline" style="width:70px"></div></div>
+          </div>
+        </div>
+        <div class="note">Hero con propuesta de valor + buscador principal y métricas de confianza (RNF4).</div>
+        <div class="section-gap"></div>
+        <div class="label">Categorías (scroll horizontal)</div>
+        <div class="row" style="gap:8px;flex-wrap:wrap">
+          <span class="pill">◻ Todos</span><span class="pill">◻ Burgers</span><span class="pill">◻ Pizza</span><span class="pill">◻ Sushi</span><span class="pill">◻ Saludable</span><span class="pill">◻ Postres</span><span class="pill">◻ Café</span>
+        </div>
+        <div class="section-gap"></div>
+        <div class="between"><div class="tline title" style="width:220px"></div><div class="tline s" style="width:70px"></div></div>
+        <div class="grid" style="grid-template-columns:repeat(3,1fr);margin-top:10px" id="homeCards"></div>
+        <div class="note">Listado de empresas/restaurantes en tarjetas: imagen, nombre, calificación, tiempo y costo de envío. Ícono ♡ para favoritos (RF2).</div>
+      </div>
+    </div>
+    <p class="caption">Figura W1. Wireframe — Pantalla de inicio.</p>
+  </section>
+
+  <!-- ===== EXPLORAR / RESULTADOS ===== -->
+  <section class="screen" id="s-search">
+    <div class="board">
+      <div class="board-title"><span>Pantalla 02 — Explorar / Resultados de búsqueda</span><span class="fig">Figura W2</span></div>
+      <div class="pad">
+        <div class="wf-header"><div class="logo-ph">LOGO</div><div class="pill">📍 Ubicación ▾</div><div class="search-ph">🔍 pizza</div><span class="icon">🛒</span></div>
+        <div class="section-gap"></div>
+        <div class="tline title" style="width:320px"></div>
+        <div class="cols" style="grid-template-columns:230px 1fr;margin-top:12px">
+          <div class="box" style="padding:14px">
+            <div class="tline title" style="width:80px"></div>
+            <div class="label" style="margin-top:12px">Ordenar por</div>
+            <div>○ Relevancia</div><div>○ Mejor calificados</div><div>○ Entrega más rápida</div><div>○ Menor envío</div>
+            <div class="label" style="margin-top:14px">Filtrar</div>
+            <div>☐ Envío gratis</div><div>☐ Calificación 4.5+</div><div>☐ Menos de 30 min</div>
+            <div class="btn" style="margin-top:14px;width:100%">Limpiar filtros</div>
+            <div class="note">Panel de filtros y ordenamiento (RNF4).</div>
+          </div>
+          <div>
+            <div class="grid" style="grid-template-columns:repeat(2,1fr)" id="searchCards"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="caption">Figura W2. Wireframe — Resultados con filtros.</p>
+  </section>
+
+  <!-- ===== DETALLE RESTAURANTE ===== -->
+  <section class="screen" id="s-rest">
+    <div class="board">
+      <div class="board-title"><span>Pantalla 03 — Detalle del restaurante / Menú</span><span class="fig">Figura W3</span></div>
+      <div class="pad">
+        <div class="btn" style="margin-bottom:10px">← Volver</div>
+        <div class="img-ph" style="height:120px"><span>IMAGEN DE PORTADA</span></div>
+        <div class="box" style="padding:14px;margin-top:-6px">
+          <div class="between">
+            <div style="flex:1"><div class="tline title" style="width:200px"></div>
+              <div class="row" style="gap:8px;margin-top:8px"><span class="pill">★ 4.8</span><span class="pill">⏱ 25-35 min</span><span class="pill">🛵 Envío</span></div>
+            </div>
+            <div class="btn">♡ Guardar</div>
+          </div>
+        </div>
+        <div class="note">Encabezado con datos clave del negocio y botón favoritos (RF2).</div>
+        <div class="section-gap"></div>
+        <div class="cols" style="grid-template-columns:1fr 300px">
+          <div>
+            <div class="row" style="gap:8px;flex-wrap:wrap"><span class="pill">Más pedidos</span><span class="pill">Acompañamientos</span><span class="pill">Bebidas</span></div>
+            <div class="section-gap"></div>
+            <div id="dishes"></div>
+          </div>
+          <div class="box" style="padding:0;overflow:hidden;align-self:start">
+            <div class="board-title" style="border-bottom:1.5px solid var(--line)">🛒 Tu pedido</div>
+            <div class="pad">
+              <div class="row"><div class="img-ph" style="width:36px;height:36px"></div><div style="flex:1"><div class="tline s"></div><div class="tline" style="width:50px"></div></div><span class="pill">− 1 +</span></div>
+              <div class="row" style="margin-top:8px"><div class="img-ph" style="width:36px;height:36px"></div><div style="flex:1"><div class="tline s"></div><div class="tline" style="width:50px"></div></div><span class="pill">− 2 +</span></div>
+              <div class="between" style="margin-top:14px;padding-top:10px;border-top:1.5px dashed var(--line)"><b>Total</b><div class="tline title" style="width:70px;margin:0"></div></div>
+              <div class="btn solid" style="width:100%;margin-top:10px">Ver carrito</div>
+            </div>
+            <div class="note" style="padding:0 12px 12px">Carrito lateral persistente (RF1).</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="caption">Figura W3. Wireframe — Detalle del restaurante y menú.</p>
+  </section>
+
+  <!-- ===== CARRITO + CHECKOUT ===== -->
+  <section class="screen" id="s-checkout">
+    <div class="board">
+      <div class="board-title"><span>Pantalla 04 — Carrito y Checkout (dirección + pago)</span><span class="fig">Figura W4</span></div>
+      <div class="pad">
+        <div class="row" style="gap:6px;color:#888;font-size:12px"><b style="color:#333">① Carrito</b> — <b style="color:#333">② Entrega y pago</b> — ③ Confirmación</div>
+        <div class="section-gap"></div>
+        <div class="cols" style="grid-template-columns:1fr 320px">
+          <div>
+            <div class="box" style="padding:14px">
+              <div class="tline title" style="width:180px"></div>
+              <div class="label" style="margin-top:12px">Tipo de entrega</div>
+              <div class="row"><span class="pill">🛵 Domicilio</span><span class="pill">🏃 Recoger</span></div>
+              <div class="img-ph" style="height:120px;margin-top:12px"><span>MAPA — dirección de entrega (RF5)</span></div>
+              <div class="cols" style="grid-template-columns:1fr 1fr;margin-top:12px">
+                <div><span class="label">Dirección</span><div class="box-d" style="height:34px"></div></div>
+                <div><span class="label">Apto / casa</span><div class="box-d" style="height:34px"></div></div>
+              </div>
+              <div style="margin-top:10px"><span class="label">Indicaciones repartidor</span><div class="box-d" style="height:34px"></div></div>
+              <div class="note">Localización con mapa + formulario de dirección (RF5, RF3).</div>
+            </div>
+            <div class="section-gap"></div>
+            <div class="box" style="padding:14px">
+              <div class="tline title" style="width:160px"></div>
+              <div class="label" style="margin-top:12px">Método de pago (RF4)</div>
+              <div class="box-d" style="padding:10px;margin-bottom:8px">◉ 💳 Tarjeta de crédito/débito</div>
+              <div class="box-d" style="padding:10px;margin-bottom:8px">○ 🏦 PSE</div>
+              <div class="box-d" style="padding:10px;margin-bottom:8px">○ 📱 Nequi / Daviplata</div>
+              <div class="box-d" style="padding:10px">○ 💵 Efectivo</div>
+              <div class="cols" style="grid-template-columns:1fr 1fr 1fr;margin-top:10px">
+                <div><span class="label">N.º tarjeta</span><div class="box-d" style="height:32px"></div></div>
+                <div><span class="label">Vence</span><div class="box-d" style="height:32px"></div></div>
+                <div><span class="label">CVV</span><div class="box-d" style="height:32px"></div></div>
+              </div>
+              <div class="note">Múltiples pasarelas de pago; datos cifrados (RF4, RNF3).</div>
+            </div>
+          </div>
+          <div class="box" style="padding:14px;align-self:start">
+            <div class="tline title" style="width:120px"></div>
+            <div class="between" style="margin-top:12px"><span>Subtotal</span><div class="tline" style="width:60px;margin:0"></div></div>
+            <div class="between" style="margin-top:8px"><span>Envío</span><div class="tline" style="width:50px;margin:0"></div></div>
+            <div class="between" style="margin-top:8px"><span>Servicio</span><div class="tline" style="width:50px;margin:0"></div></div>
+            <div class="between" style="margin-top:12px;padding-top:10px;border-top:1.5px dashed var(--line)"><b>Total</b><div class="tline title" style="width:70px;margin:0"></div></div>
+            <div class="btn solid" style="width:100%;margin-top:12px">Confirmar y pagar</div>
+            <div class="note">Resumen del pedido siempre visible (RF1, RNF4).</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="caption">Figura W4. Wireframe — Carrito y proceso de pago.</p>
+  </section>
+
+  <!-- ===== SEGUIMIENTO ===== -->
+  <section class="screen" id="s-track">
+    <div class="board">
+      <div class="board-title"><span>Pantalla 05 — Seguimiento del pedido</span><span class="fig">Figura W5</span></div>
+      <div class="pad">
+        <div class="tline title" style="width:240px"></div>
+        <div class="cols" style="grid-template-columns:1fr 340px;margin-top:12px">
+          <div class="img-ph" style="height:240px"><span>MAPA EN TIEMPO REAL — ruta del repartidor (RF3)</span></div>
+          <div>
+            <div class="box" style="padding:14px"><div class="between"><span>Llega en</span><div class="tline title" style="width:80px;margin:0"></div></div></div>
+            <div class="section-gap"></div>
+            <ul class="timeline-ph">
+              <li><span class="tl-dot on">✓</span><div><b>Pedido recibido</b><div class="tline s"></div></div></li>
+              <li><span class="tl-dot on">✓</span><div><b>En preparación</b><div class="tline s"></div></div></li>
+              <li><span class="tl-dot on">●</span><div><b>En camino</b><div class="tline s"></div></div></li>
+              <li><span class="tl-dot">4</span><div><b style="color:#aaa">Entregado</b></div></li>
+            </ul>
+            <div class="box" style="padding:12px" class="row"><div class="row"><div class="icon" style="width:40px;height:40px">🧑</div><div style="flex:1;margin-left:8px"><div class="tline s"></div><div class="tline" style="width:80px"></div></div><span class="icon">📞</span></div></div>
+            <div class="note">Estados del pedido + repartidor asignado (RF3).</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="caption">Figura W5. Wireframe — Seguimiento y entrega.</p>
+  </section>
+
+  <!-- ===== LOGIN / REGISTRO ===== -->
+  <section class="screen" id="s-auth">
+    <div class="board">
+      <div class="board-title"><span>Pantalla 06 — Inicio de sesión / Registro</span><span class="fig">Figura W6</span></div>
+      <div class="pad" style="display:grid;place-items:center">
+        <div class="box" style="width:100%;max-width:400px;padding:0;overflow:hidden">
+          <div style="background:#ececec;padding:18px;border-bottom:1.5px solid var(--line)"><div class="tline title" style="width:180px"></div><div class="tline s"></div></div>
+          <div class="row" style="border-bottom:1.5px solid var(--line)"><div style="flex:1;text-align:center;padding:12px;border-bottom:2px solid #555;font-weight:700">Iniciar sesión</div><div style="flex:1;text-align:center;padding:12px;color:#999">Crear cuenta</div></div>
+          <div class="pad">
+            <div class="row"><div class="btn" style="flex:1">Google</div><div class="btn" style="flex:1">Apple</div></div>
+            <div style="text-align:center;color:#aaa;font-size:11px;margin:12px 0">— o con tu correo —</div>
+            <span class="label">Correo</span><div class="box-d" style="height:36px;margin-bottom:10px"></div>
+            <span class="label">Contraseña</span><div class="box-d" style="height:36px"></div>
+            <div class="btn solid" style="width:100%;margin-top:14px">Iniciar sesión</div>
+            <div class="note">Gestión de usuarios: acceso, registro y social login (RF2, RNF3).</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="caption">Figura W6. Wireframe — Autenticación de usuarios.</p>
+  </section>
+
+  <!-- ===== CUENTA ===== -->
+  <section class="screen" id="s-account">
+    <div class="board">
+      <div class="board-title"><span>Pantalla 07 — Mi cuenta (pedidos, favoritos, datos)</span><span class="fig">Figura W7</span></div>
+      <div class="pad">
+        <div class="tline title" style="width:160px"></div>
+        <div class="cols" style="grid-template-columns:220px 1fr;margin-top:12px">
+          <div class="box" style="padding:10px;align-self:start">
+            <div class="btn" style="width:100%;margin-bottom:6px">🧾 Mis pedidos</div>
+            <div class="btn" style="width:100%;margin-bottom:6px">♡ Favoritos</div>
+            <div class="btn" style="width:100%;margin-bottom:6px">📍 Direcciones</div>
+            <div class="btn" style="width:100%;margin-bottom:6px">💳 Pagos</div>
+            <div class="btn" style="width:100%">👤 Perfil</div>
+          </div>
+          <div class="box" style="padding:14px">
+            <div class="tline title" style="width:140px"></div>
+            <div class="row" style="margin-top:12px;padding-bottom:12px;border-bottom:1.5px solid var(--line)"><div class="img-ph" style="width:44px;height:44px"></div><div style="flex:1"><div class="tline s"></div><div class="tline" style="width:120px"></div></div><span class="pill">En camino</span><span class="btn">Seguir</span></div>
+            <div class="row" style="margin-top:12px;padding-bottom:12px;border-bottom:1.5px solid var(--line)"><div class="img-ph" style="width:44px;height:44px"></div><div style="flex:1"><div class="tline s"></div><div class="tline" style="width:120px"></div></div><span class="pill">Entregado</span><span class="btn">Repetir</span></div>
+            <div class="row" style="margin-top:12px"><div class="img-ph" style="width:44px;height:44px"></div><div style="flex:1"><div class="tline s"></div><div class="tline" style="width:120px"></div></div><span class="pill">Entregado</span><span class="btn">Repetir</span></div>
+            <div class="note">Historial de pedidos, repetir compra y gestión de datos personales (RF1, RF2).</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="caption">Figura W7. Wireframe — Panel de cuenta del usuario.</p>
+  </section>
+
+</div>
+
+<script>
+const SCREENS=[['s-home','Inicio'],['s-search','Explorar'],['s-rest','Restaurante'],['s-checkout','Carrito/Pago'],['s-track','Seguimiento'],['s-auth','Login'],['s-account','Cuenta']];
+document.getElementById('wfNav').innerHTML=SCREENS.map(s=>`<button data-s="${s[0]}" onclick="show('${s[0]}')">${s[1]}</button>`).join('');
+function show(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');
+  document.querySelectorAll('#wfNav button').forEach(b=>b.classList.toggle('active',b.dataset.s===id));
+  if(location.hash!=='#'+id)history.replaceState(null,'','#'+id);window.scrollTo(0,0)}
+// tarjeta wireframe reutilizable
+function card(){return `<div class="card-ph"><div class="img-ph ph-cover"><span>IMG</span></div><div class="ph-body"><div class="tline m"></div><div class="tline s"></div><div class="row" style="gap:8px;margin-top:8px"><span style="font-size:11px;color:#777">★ 4.x</span><span style="font-size:11px;color:#777">· 25 min</span><span style="font-size:11px;color:#777">· $env</span></div></div></div>`}
+document.getElementById('homeCards').innerHTML=Array(6).fill(0).map(card).join('');
+document.getElementById('searchCards').innerHTML=Array(6).fill(0).map(card).join('');
+document.getElementById('dishes').innerHTML=Array(3).fill(0).map(()=>`<div class="box" style="padding:12px;display:flex;gap:12px;margin-bottom:10px"><div style="flex:1"><div class="tline m"></div><div class="tline l"></div><div class="tline title" style="width:60px;margin-top:8px"></div></div><div class="img-ph" style="width:80px;height:80px;position:relative"><span>IMG</span><span style="position:absolute;right:-6px;bottom:-6px;width:24px;height:24px;border-radius:50%;background:#555;color:#fff;display:grid;place-items:center;z-index:2">＋</span></div></div>`).join('');
+// deep-link
+const h=(location.hash||'#s-home').slice(1);
+show(SCREENS.some(s=>s[0]===h)?h:'s-home');
+</script>
