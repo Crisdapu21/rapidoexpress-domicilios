@@ -38,4 +38,4 @@ wireframe/index.html  → Wireframe de baja fidelidad
 
 ---
 
-Autoría: Cristian Pulido — ACA Ingeniería Web (CUN), 2026. Uso académico.
+Autoría: Cristian David Pulido Sarmiento — Ingeniería de Sistemas, Grupo 53329. Docente: Sergio Alexander Mora Novoa. ACA Ingeniería Web (CUN), 2026. Uso académico.
